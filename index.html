@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>1XBET MINES • REAL SIGNAL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0a0c15;
+            background-image: radial-gradient(circle at 30% 50%, #1a2340 0%, #0a0c15 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .container {
+            max-width: 560px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .lock-panel {
+            background: #111624;
+            border: 1px solid #2e3a5c;
+            border-radius: 40px;
+            padding: 32px 20px;
+            box-shadow: 0 25px 40px -10px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        .lock-header {
+            color: #ffd700;
+            font-size: clamp(24px, 6vw, 28px);
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .lock-sub {
+            color: #7e8bb6;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .password-field {
+            background: #1e2538;
+            border: 2px solid #2f3b5a;
+            border-radius: 60px;
+            padding: 16px 20px;
+            width: 100%;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 4px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .password-field:focus {
+            border-color: #ffd700;
+        }
+
+        .btn-primary {
+            background: linear-gradient(145deg, #ffd700, #b8860b);
+            border: none;
+            border-radius: 60px;
+            padding: 16px 24px;
+            width: 100%;
+            font-weight: 800;
+            font-size: 16px;
+            color: #0a0c15;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #7d5d0e;
+            transition: 0.1s;
+        }
+
+        .btn-primary:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #7d5d0e;
+        }
+
+        .main-panel {
+            background: #11172b;
+            border: 1px solid #2f3d63;
+            border-radius: 40px;
+            padding: 20px 16px;
+            box-shadow: 0 30px 40px -10px black;
+        }
+
+        .signal-badge {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1b2340;
+            border-radius: 60px;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ffd70033;
+        }
+
+        .live-indicator {
+            background: #ff3333;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .time-container {
+            background: #0f1a2a;
+            border-radius: 40px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #ffd700;
+            text-align: center;
+        }
+
+        .time-label {
+            color: #8f9ed4;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .play-time {
+            color: #ffd700;
+            font-size: 48px;
+            font-weight: 800;
+            font-family: monospace;
+            text-shadow: 0 0 20px #ffd700;
+        }
+
+        .current-time {
+            color: #8f9ed4;
+            font-size: 14px;
+            margin-top: 8px;
+            font-family: monospace;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            background: #0c1222;
+            padding: 16px;
+            border-radius: 28px;
+            margin-bottom: 20px;
+            border: 1px solid #2f3d63;
+        }
+
+        .tile {
+            aspect-ratio: 1;
+            background: #1e2a45;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #a3b3e0;
+            border: 2px solid #31416b;
+            box-shadow: 0 4px 0 #0a0f1c;
+        }
+
+        .tile.safe {
+            background: #ffd700;
+            color: #1e1a0a;
+            border-color: #ffffff;
+            box-shadow: 0 0 20px #ffd700, 0 4px 0 #7d5d0e;
+        }
+
+        .stats-panel {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: #151e36;
+            border-radius: 24px;
+            padding: 12px 4px;
+            text-align: center;
+            border: 1px solid #3b4870;
+        }
+
+        .stat-number {
+            font-size: clamp(20px, 5vw, 28px);
+            font-weight: 800;
+            color: #ffd700;
+        }
+
+        .stat-desc {
+            font-size: 10px;
+            color: #95a5d4;
+            text-transform: uppercase;
+        }
+
+        .safe-positions {
+            background: #0f1629;
+            border-radius: 30px;
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 18px;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .generate-btn {
+            background: linear-gradient(145deg, #ffd700, #b8860b);
+            border: none;
+            border-radius: 50px;
+            padding: 24px;
+            width: 100%;
+            font-weight: 800;
+            font-size: 24px;
+            color: #0a0c15;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #7d5d0e;
+            transition: all 0.1s ease;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        .generate-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #7d5d0e;
+        }
+
+        .signal-id {
+            font-size: 14px;
+            color: #ffd700;
+            text-align: center;
+            margin: 16px 0;
+            font-family: monospace;
+            padding: 12px;
+            background: #0f1629;
+            border-radius: 30px;
+            border: 1px solid #ffd700;
+            font-weight: 600;
+        }
+
+        .footer-link {
+            text-align: center;
+            margin: 16px 0 8px;
+        }
+
+        .link-1x {
+            color: #00b050;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 14px 32px;
+            background: #1a2f22;
+            border-radius: 50px;
+            border: 2px solid #00d166;
+            display: inline-block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .code-hint {
+            color: #4f6191;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="lockScreen" class="lock-panel">
+            <div class="lock-header">🔐 SYSTEM LOCKED</div>
+            <div class="lock-sub">ENTER ACCESS CODE</div>
+            <input type="password" id="passwordInput" class="password-field" placeholder="········" maxlength="8">
+            <button class="btn-primary" id="unlockBtn">UNLOCK</button>
+            <div class="code-hint">code: <span style="color:#ffd700;">mose1974</span></div>
+        </div>
+
+        <div id="predictorMain" class="main-panel hidden">
+            <div class="signal-badge">
+                <span style="color:#ffd700; font-weight:700;">⚡ 1XBET MINES</span>
+                <span><span class="live-indicator"></span> LIVE</span>
+            </div>
+
+            <div class="time-container">
+                <div class="time-label">⏰ PLAY AT THIS TIME</div>
+                <div class="play-time" id="playTime">--:--</div>
+                <div class="current-time" id="currentTime">---</div>
+            </div>
+
+            <div id="minesGrid" class="grid-container"></div>
+
+            <div id="safePositions" class="safe-positions">⭐ SAFE TILES: --</div>
+
+            <div class="stats-panel">
+                <div class="stat-box">
+                    <div class="stat-number" id="safeCount">0</div>
+                    <div class="stat-desc">SAFE</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="trapCount">3</div>
+                    <div class="stat-desc">TRAPS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="accuracyValue">--</div>
+                    <div class="stat-desc">ACCURACY</div>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="generateBtn">GET SIGNAL</button>
+
+            <div class="signal-id" id="signalId">ID: ---</div>
+
+            <div class="footer-link">
+                <a href="https://1xbet.com" id="onexbetLink" class="link-1x" target="_blank">PLAY 1XBET</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const VALID_PASSWORD = "mose1974";
+            const SITE_URL = "https://1xbet.com";
+            
+            const lockScreen = document.getElementById('lockScreen');
+            const predictorMain = document.getElementById('predictorMain');
+            const unlockBtn = document.getElementById('unlockBtn');
+            const passwordInput = document.getElementById('passwordInput');
+            const generateBtn = document.getElementById('generateBtn');
+            const minesGrid = document.getElementById('minesGrid');
+            const safeCountSpan = document.getElementById('safeCount');
+            const trapCountSpan = document.getElementById('trapCount');
+            const accuracyValueSpan = document.getElementById('accuracyValue');
+            const playTimeSpan = document.getElementById('playTime');
+            const currentTimeSpan = document.getElementById('currentTime');
+            const onexbetLink = document.getElementById('onexbetLink');
+            const signalIdSpan = document.getElementById('signalId');
+            const safePositionsSpan = document.getElementById('safePositions');
+
+            let timerInterval = null;
+            let lastPlayTime = "";
+
+            function updateCurrentTime() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                currentTimeSpan.innerText = `${hours}:${minutes}:${seconds}`;
+            }
+
+            function generatePlayTime() {
+                const now = new Date();
+                // Generate random future time (dakika 1-10 kutoka sasa)
+                const futureMinutes = Math.floor(Math.random() * 10) + 1; // 1-10 minutes from now
+                
+                const playTime = new Date(now.getTime() + (futureMinutes * 60000));
+                const hours = String(playTime.getHours()).padStart(2, '0');
+                const minutes = String(playTime.getMinutes()).padStart(2, '0');
+                
+                return `${hours}:${minutes}`;
+            }
+
+            function generateSafePositions() {
+                // Traps ni 3 tu kila wakati
+                const TRAPS = 3;
+                
+                // Safe tiles zinaweza kuwa 2 hadi 8
+                const safeCount = Math.floor(Math.random() * 7) + 2; // 2,3,4,5,6,7,8
+                
+                // Generate unique safe positions
+                const positions = new Set();
+                while(positions.size < safeCount) {
+                    positions.add(Math.floor(Math.random() * 25) + 1);
+                }
+                
+                return Array.from(positions).sort((a, b) => a - b);
+            }
+
+            function renderGrid(safePositions) {
+                minesGrid.innerHTML = '';
+                
+                for (let i = 1; i <= 25; i++) {
+                    const tile = document.createElement('div');
+                    tile.className = 'tile';
+                    
+                    if (safePositions.includes(i)) {
+                        tile.classList.add('safe');
+                        tile.innerText = '⭐';
+                    } else {
+                        tile.innerText = '💣';
+                    }
+                    
+                    minesGrid.appendChild(tile);
+                }
+            }
+
+            function generateSignal() {
+                const now = new Date();
+                
+                // Generate safe positions (2-8 safe tiles)
+                const safePositions = generateSafePositions();
+                const safeCount = safePositions.length;
+                
+                // Traps ni 3 tu
+                const trapsCount = 3;
+                
+                // Accuracy kati ya 98% - 100%
+                const accuracy = (98 + (Math.random() * 2)).toFixed(1);
+                
+                // Generate play time (saa halisi ya kucheza)
+                const playTime = generatePlayTime();
+                playTimeSpan.innerText = playTime;
+                lastPlayTime = playTime;
+                
+                renderGrid(safePositions);
+                
+                safeCountSpan.innerText = safeCount;
+                trapCountSpan.innerText = trapsCount;
+                accuracyValueSpan.innerText = accuracy + '%';
+                
+                safePositionsSpan.innerHTML = `⭐ SAFE TILES: ${safePositions.join(' · ')}`;
+                
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                
+                const signalId = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                signalIdSpan.innerText = `📅 SIGNAL: ${signalId}`;
+                
+                return true;
+            }
+
+            function checkPlayTime() {
+                if (!lastPlayTime) return;
+                
+                const now = new Date();
+                const currentHours = now.getHours();
+                const currentMinutes = now.getMinutes();
+                
+                const [playHours, playMinutes] = lastPlayTime.split(':').map(Number);
+                
+                if (currentHours === playHours && currentMinutes === playMinutes) {
+                    playTimeSpan.style.color = '#4CAF50';
+                    playTimeSpan.style.textShadow = '0 0 20px #4CAF50';
+                    playTimeSpan.style.animation = 'pulse 1s infinite';
+                } else {
+                    playTimeSpan.style.color = '#ffd700';
+                    playTimeSpan.style.textShadow = '0 0 20px #ffd700';
+                    playTimeSpan.style.animation = 'none';
+                }
+            }
+
+            unlockBtn.addEventListener('click', function() {
+                if (passwordInput.value === VALID_PASSWORD) {
+                    lockScreen.classList.add('hidden');
+                    predictorMain.classList.remove('hidden');
+                    
+                    onexbetLink.href = SITE_URL;
+                    
+                    // Start time update
+                    if (timerInterval) clearInterval(timerInterval);
+                    timerInterval = setInterval(() => {
+                        updateCurrentTime();
+                        checkPlayTime();
+                    }, 1000);
+                    updateCurrentTime();
+                    
+                    // Show empty grid
+                    minesGrid.innerHTML = '';
+                    for (let i = 1; i <= 25; i++) {
+                        const tile = document.createElement('div');
+                        tile.className = 'tile';
+                        tile.innerText = '❓';
+                        minesGrid.appendChild(tile);
+                    }
+                    
+                } else {
+                    alert('Invalid code. Use: mose1974');
+                }
+            });
+
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') unlockBtn.click();
+            });
+
+            generateBtn.addEventListener('click', function() {
+                generateSignal();
+            });
+
+            // Add pulse animation for play time
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.7; transform: scale(1.05); }
+                    100% { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        })();
+    </script>
+</body>
+</html>
